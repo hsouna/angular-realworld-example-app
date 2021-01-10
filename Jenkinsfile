@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'node:12-buster-slim' }
+        docker { image 'timbru31/node-alpine-git:14' }
     }
     environment {
         GIT_LATEST_COMMIT_EDITOR= sh(
