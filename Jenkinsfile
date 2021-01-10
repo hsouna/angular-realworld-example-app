@@ -21,15 +21,15 @@ pipeline {
     }
 
     stages {
-        agent {
-            docker { image 'node:12-buster-slim' }
-        }
         stage ('Show commit author') {
             steps {
                 sh "echo '${env.GIT_LATEST_COMMIT_EDITOR}'"
             }
         }
         stage ('Execute CI pipeline') {
+            agent {
+                docker { image 'node:12-buster-slim' }
+            }
             stages{
                 stage ('npm install'){
                     steps {
