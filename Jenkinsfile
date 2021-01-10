@@ -29,19 +29,14 @@ pipeline {
         }
         stage ('Execute CI pipeline') {
             stages{
-                stage ('Copy node modules folder'){
+                stage ('npm install'){
                     steps {
-                        sh 'cp -r /app/* .'
+                        sh "npm install"
                     }
                 }
                 stage('NPM build'){
                     steps {
                         sh 'npm run-script build --prod'
-                    }
-                }
-                stage ('Unit tests') {
-                    steps{
-                        sh 'ng test --karma-config karma.conf.ci.js'
                     }
                 }
                 stage ('Artifacts') {
