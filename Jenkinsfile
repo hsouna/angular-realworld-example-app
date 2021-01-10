@@ -45,14 +45,6 @@ pipeline {
                         archiveArtifacts artifacts: 'dist/**/*.*'
                     }
                 }
-                stage ('Trigger CD pipeline'){
-                    steps{
-                        build job: 'cd-pipeline', parameters: [
-                            string(name: 'REPO_URL', value: "${env.GIT_SSH_URL}"),
-                            string(name: 'REPO_BRANCH', value: "${env.GIT_CURRENT_BRANCH}")
-                        ], wait: false
-                    }
-                }
             }
         }
     }
