@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'timbru31/node-alpine-git:14' }
-    }
+    agent any
     environment {
         GIT_LATEST_COMMIT_EDITOR= sh(
             returnStdout:true,
@@ -23,6 +21,9 @@ pipeline {
     }
 
     stages {
+        agent {
+            docker { image 'node:12-buster-slim' }
+        }
         stage ('Show commit author') {
             steps {
                 sh "echo '${env.GIT_LATEST_COMMIT_EDITOR}'"
