@@ -15,6 +15,7 @@ pipeline {
             returnStdout: true,
             script: "git rev-parse --abbrev-ref HEAD"
         )
+        HOME = '.'
 	  }
 
     parameters {
