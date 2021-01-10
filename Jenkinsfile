@@ -40,10 +40,10 @@ pipeline {
                         sh 'npm run-script build --prod'
                     }
                 }
-                stage ('Artifacts') {
-                    steps {
-                        archiveArtifacts artifacts: 'dist/**/*.*'
-                    }
+                stage('Create artifact after build') {
+                    sh "tar czvf dist.tar.gz dist"
+                    sh 'tar -czvf app.${BUILD_ID}.tar.gz dist'
+                    archiveArtifacts "**/*.tar.gz"
                 }
             }
         }
